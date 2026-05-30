@@ -1,0 +1,69 @@
+const roles = [
+  "Full-Stack Developer",
+  "Frontend Developer",
+  "JavaScript Developer",
+  "Web Developer"
+];
+
+let roleIndex = 0;
+let charIndex = 0;
+
+const typing = document.getElementById("typing");
+
+function typeEffect() {
+
+  if(charIndex < roles[roleIndex].length){
+
+    typing.textContent += roles[roleIndex].charAt(charIndex);
+
+    charIndex++;
+
+    setTimeout(typeEffect,100);
+
+  }
+
+  else{
+
+    setTimeout(eraseEffect,1500);
+
+  }
+
+}
+
+function eraseEffect(){
+
+  if(charIndex > 0){
+
+    typing.textContent =
+    roles[roleIndex].substring(0,charIndex-1);
+
+    charIndex--;
+
+    setTimeout(eraseEffect,50);
+
+  }
+
+  else{
+
+    roleIndex++;
+
+    if(roleIndex >= roles.length){
+      roleIndex = 0;
+    }
+
+    setTimeout(typeEffect,300);
+
+  }
+
+}
+
+typeEffect();
+
+const navToggle = document.querySelector('.nav-toggle');
+const navList = document.querySelector('.nav-list');
+
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    navList.classList.toggle('active');
+  });
+}
